@@ -5,10 +5,10 @@ const clients = []
 const clientsRoutes = express.Router()
 
 // CRUD - CREATE / READ / UPDATE / DELETE
+
 // POST method for Create Client
-clientsRoutes.post("/api/create-client", (req, res) => {
+clientsRoutes.post("/api/createClient", (req, res) => {
     const id = Math.floor((Date.now().toString())/100)
-    console.log(id)
 
     const {name} = req.body
     clients.push({name, id})
@@ -16,7 +16,14 @@ clientsRoutes.post("/api/create-client", (req, res) => {
     return res.status(201).json(clients)
 })
 
-// GET method for Client
-clientsRoutes.get
+// GET method for ReadAll Client
+clientsRoutes.get("/api/readAllClients", (req, res) => {
+    return res.status(200).json(clients)
+})
+
+// PUT method for Update Client
+// clientsRoutes.put("/api/updateClient", (req, res) => {
+
+// })
 
 module.exports = clientsRoutes
