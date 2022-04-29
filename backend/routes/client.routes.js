@@ -50,18 +50,22 @@ clientsRoutes.put("/api/Client", async (req, res) => {
 })
 
 // DELETE method for Update Client
-// clientsRoutes.delete("/api/Client/:id", (req, res) => {
-//     const {id} = req.params
+clientsRoutes.delete("/api/Client/:paramsId", async (req, res) => {
+    const { paramsId } = req.params
 
-//     if(!id)
-//         return res.status(400).json("Id is mandatory!")
+    const id = parseInt(paramsId)
 
-//     const clientExists = await prisma.client.findUnique( { where: {id} } )
+    if(!id)
+        return res.status(400).json("Id is mandatory!")
 
-//     if(!clientExists)
-//         return res.status(403).json("Client doesn't exists, update not authorized!")
+    const clientExists = await prisma.client.findUnique( { where: {id} } )
 
+    if(!clientExists)
+        return res.status(403).json("Client doesn't exists, update not authorized!")
 
-// })
+    await prisma.client.delete({where: {id: id}})
+
+    return res.status(200).send()   
+})
 
 module.exports = clientsRoutes
