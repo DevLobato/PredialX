@@ -12,7 +12,29 @@ datasource db {
 
 // Models ("npx prisma migrate dev ${modelName}")
 
+// Client Model
 model Client {
-  id   Int    @id @unique @default(autoincrement())
-  name String
+  id           Int            @id @unique @default(autoincrement())
+  name         String
+  ServiceOrder ServiceOrder[]
+}
+
+// Collaborator Model
+model Collaborator {
+  id           Int            @id @unique @default(autoincrement())
+  name         String
+  email        String         @unique
+  password     String
+  ServiceOrder ServiceOrder[]
+}
+
+// ServiceOrder Model
+model ServiceOrder {
+  id                 Int          @id @unique @default(autoincrement())
+  oppeningDate       DateTime     @default(now())
+  Client             Client       @relation(fields: [ClientId], references: [id])
+  ClientId           Int
+  problemDescription String
+  Collaborator       Collaborator @relation(fields: [CollaboratorId], references: [id])
+  CollaboratorId     Int
 }
