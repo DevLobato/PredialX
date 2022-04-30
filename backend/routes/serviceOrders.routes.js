@@ -10,84 +10,69 @@ const prisma = new PrismaClient()
 
 // CRUD - CREATE / READ / UPDATE / DELETE
 
-/*
-// ServiceOrder Model
-model ServiceOrder {
-  id                 Int          @id @unique @default(autoincrement())
-  oppeningDate       DateTime     @default(now())
-  Client             Client       @relation(fields: [ClientId], references: [id])
-  ClientId           Int
-  problemDescription String
-  Collaborator       Collaborator @relation(fields: [CollaboratorId], references: [id])
-  CollaboratorId     Int
-}
-*/
-
 // POST method for Create Service Order
-
-//JSON to Create 
-/*
-{
-    "problemDescription": "detailed description",
-    "clientName": "Vinicius",
-    "collaboratorName": "Roger"
-}
-
-*/
 serviceOrderRoutes.post("/api/serviceOrder", async (req, res) => {
     const { problemDescription, client, collaborator } = req.body
 
+    //Verifying if Client exists by Name
     const clientExists = await prisma.client.findFirst({where: {name: client}})
+
+    const clientId = clientExists.id
+    console.log(clientId)
 
     if(!clientExists)
         return res.status(403).json("Client doesn't exists, creation not authorized!")
 
-    const collabExists = await prisma.client.findFirst({where: {name: collaborator}})
+    // Verifying if Collab exists
+    const collaboratorExists = await prisma.collaborator.findFirst({where: {name: collaborator}})
 
-    if(!collabExists)
-    return res.status(403).json("Collab doesn't exists, creation not authorized!")
+    const collaboratorId = collaboratorExists.id
+    console.log(collaboratorId)
 
+    if(!collaboratorExists)
+        return res.status(403).json("Collab doesn't exists, creation not authorized!")
+
+    // Create Service Order
     const serviceOrder = await prisma.serviceOrder.create({ 
         data: { 
             problemDescription,
-            client,
-            collaborator,
-            oppeningDate
+            Client: { connect: {id: clientId}},
+            Collaborator: { connect: {id: collaboratorId}}            
         } 
     }) 
 
-    return res.status(201).json()
+    return res.status(201).json(serviceOrder)
 })
-/*
+
 // GET method for ReadAll Service Order
 serviceOrderRoutes.get("/api/serviceOrder", async (req, res) => {
-    const client = await prisma.client.findMany()
+    const serviceOrder = await prisma.serviceOrder.findMany()
 
-    return res.status(200).json(client)
+    return res.status(200).json(serviceOrder)
 })
 
-// PUT method for Update Service Order
+// PUT method for Update Service Order [Can only update the Problem Description]
 serviceOrderRoutes.put("/api/serviceOrder", async (req, res) => {
-    const { id, name } = req.body
+    const { id, problemDescription } = req.body
 
     if(!id)
         return res.status(400).json("Id is mandatory!")
 
-    const clientExists = await prisma.client.findUnique( { where: {id} } )
+    const serviceOrderExists = await prisma.serviceOrder.findUnique( { where: {id} } )
 
-    if(!clientExists)
-        return res.status(403).json("Client doesn't exists, update not authorized!")
+    if(!serviceOrderExists)
+        return res.status(403).json("Service Order doesn't exists, update not authorized!")
 
-    const client = await prisma.client.update({
+    const serviceOrder = await prisma.serviceOrder.update({
         where: {
             id, 
         },
         data: {
-            name
+            problemDescription
         },
     })
 
-    return res.status(200).json(client)
+    return res.status(200).json(serviceOrder)
 })
 
 // DELETE method for Update Service Order
@@ -99,14 +84,14 @@ serviceOrderRoutes.delete("/api/serviceOrder/:paramsId", async (req, res) => {
     if(!id)
         return res.status(400).json("Id is mandatory!")
 
-    const clientExists = await prisma.client.findUnique( { where: {id} } )
+    const serviceOrderExists = await prisma.serviceOrder.findUnique( { where: {id} } )
 
-    if(!clientExists)
-        return res.status(403).json("Client doesn't exists, update not authorized!")
+    if(!serviceOrderExists)
+        return res.status(403).json("Service Order doesn't exists, update not authorized!")
 
-    await prisma.client.delete({where: {id: id}})
+    await prisma.serviceOrder.delete({where: {id: id}})
 
-    return res.status(200).send()   
+    return res.status(204).send()   
 })
-*/
+
 module.exports = serviceOrderRoutes

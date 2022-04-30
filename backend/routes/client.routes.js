@@ -65,7 +65,7 @@ clientsRoutes.delete("/api/Client/:paramsId", async (req, res) => {
 
     await prisma.client.delete({where: {id: id}})
 
-    return res.status(200).send()   
+    return res.status(204).send()   
 })
 
 module.exports = clientsRoutes

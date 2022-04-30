@@ -69,7 +69,7 @@ collabRoutes.delete("/api/Collab/:paramsId", async (req, res) => {
 
     await prisma.collaborator.delete({where: {id: id}})
 
-    return res.status(200).send()   
+    return res.status(204).send()   
 })
 
 module.exports = collabRoutes
