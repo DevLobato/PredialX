@@ -6,16 +6,6 @@ const prisma = new PrismaClient()
 
 // CRUD - CREATE / READ / UPDATE / DELETE
 
-/*Collaborator Model
-model Collaborator {
-    id           Int            @id @unique @default(autoincrement())
-    name         String
-    email        String         @unique
-    password     String
-    ServiceOrder ServiceOrder[]
-  }
-*/
-
 // POST method for Create Collaborator
 collabRoutes.post("/api/Collab", async (req, res) => {
     const { name, email, password } = req.body

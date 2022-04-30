@@ -4,6 +4,7 @@ const express = require("express")
 // Project Route imports
 const clientsRoutes = require("./routes/client.routes")
 const collabRoutes = require("./routes/collaborator.routes")
+const serviceOrderRoutes = require("./routes/serviceOrders.routes")
 
 const app = express()
 const port = "3030" //Defining port 
@@ -13,6 +14,7 @@ app.use(express.json())
 //Project Routes
 app.use(clientsRoutes)
 app.use(collabRoutes)
+app.use(serviceOrderRoutes)
 
 //Testing if server is running
 app.get("/api/server", (req, res) => {
