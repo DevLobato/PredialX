@@ -1,5 +1,6 @@
 // Main route
 const express = require("express")
+const cors = require("cors")
 
 // Project Route imports
 const clientsRoutes = require("./routes/client.routes")
@@ -10,6 +11,7 @@ const app = express()
 const port = "3030" //Defining port 
 
 app.use(express.json())
+app.use(cors())
 
 //Project Routes
 app.use(clientsRoutes)
