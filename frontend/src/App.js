@@ -1,11 +1,10 @@
-import Login from "./pages/Login"
+// import Login from "./pages/Login"
+import Route from "./routes/Route";
 
 function App() {
 
   return (
-   <div>
-     <Login/>
-   </div>
+    <Route />
   )
 }
 

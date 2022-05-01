@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-// import ServiceOrders from "./ServiceOrder";
+import { Navigate, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -49,44 +49,6 @@ const Button = styled.button`
 `;
 
 const Login = () => {
-  return (
-    <Container>
-      <Wrapper>
-        <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-        </Form>
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default Login;
-
-/*
-const FormGroup = styled.div`
-  display: block;
-  width: 300px;
-  margin: 40px auto;
-`;
-
-const Label = styled.label`
-  margin-bottom: 0.5em;
-  display: block;
-`;
-
-const Input = styled.input`
-  padding: 0.5em;
-  background: lightgrey;
-  border: none;
-  border-radius: 3px;
-  width: 100%;
-  margin-bottom: 0.5em;
-`;
-
-function Login() {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
@@ -94,25 +56,30 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         setClients(data);
-        console.log(data);
       });
   }, []);
 
-  return (
-    <div>
-      <FormGroup>
-        <Label>E-mail:</Label>
-        <Input />
-      </FormGroup>
-      <FormGroup>
-        <Label>Password:</Label>
-        <Input type="password" />
-      </FormGroup>
+  function redirectToServiceOrders() {
+    return <Navigate to="/serviceOrders" />;
+  }
 
-      <ServiceOrders />
-    </div>
+  return (
+    <Container>
+      <Wrapper>
+        <Title>Enter</Title>
+        <Form>
+          <Input placeholder="username" />
+          <Input placeholder="password" type="password" />
+          {/* <Button onClick={redirectToServiceOrders()}>Login</Button> */}
+          <Link to="/serviceOrders" className="btn btn-primary">
+            Login
+          </Link>
+        </Form>
+      </Wrapper>
+    </Container>
   );
-}
+};
+
+// <Link to="/insert/your/path/here" className="btn btn-primary">hello</Link>
 
 export default Login;
-*/

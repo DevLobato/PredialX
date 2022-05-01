@@ -1,4 +1,12 @@
 -- CreateTable
+CREATE TABLE "Client" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "Client_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Collaborator" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -18,6 +26,9 @@ CREATE TABLE "ServiceOrder" (
 
     CONSTRAINT "ServiceOrder_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Client_id_key" ON "Client"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Collaborator_id_key" ON "Collaborator"("id");
