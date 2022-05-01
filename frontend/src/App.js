@@ -1,10 +1,10 @@
-import ServiceOrders from "./pages/ServiceOrder"
+import Login from "./pages/Login"
 
 function App() {
 
   return (
    <div>
-     <ServiceOrders/>
+     <Login/>
    </div>
   )
 }

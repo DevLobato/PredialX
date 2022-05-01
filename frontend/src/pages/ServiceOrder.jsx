@@ -1,4 +1,27 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const List = styled.ul`
+  display: block;
+  width: 500px;
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 3px;
+`;
+
+const Items = styled.div`
+  background-color: #1e3f5a;
+  text-align: center;
+  padding: 10px 10px;
+`;
+
+const ProblemDescription = styled.strong`
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 50px;
+  background-color: lightgrey;
+  padding: 5px;
+`;
 
 function ServiceOrders() {
   const [serviceOrders, setServiceOrders] = useState([]);
@@ -12,16 +35,16 @@ function ServiceOrders() {
   }, []);
 
   return (
-    <ul>
+    <List>
       {serviceOrders.map((orders) => {
         return (
-          <li key={orders.id}>
-            <strong>{orders.problemDescription}</strong>
-            <p>{orders.clientId}</p>
-          </li>
+          <Items key={orders.id}>
+            <ProblemDescription>{orders.problemDescription}</ProblemDescription>
+            <ProblemDescription>{orders.clientId}</ProblemDescription>
+          </Items>
         );
       })}
-    </ul>
+    </List>
   );
 }
 
