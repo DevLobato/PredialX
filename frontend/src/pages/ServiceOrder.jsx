@@ -31,6 +31,7 @@ function ServiceOrders() {
       .then((res) => res.json())
       .then((data) => {
         setServiceOrders(data);
+        console.log(data);
       });
   }, []);
 
