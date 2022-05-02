@@ -4,7 +4,7 @@ const {PrismaClient} = require("@prisma/client")
 const collabRoutes = express.Router()
 const prisma = new PrismaClient()
 
-// CRUD - CREATE / READ / UPDATE / DELETE
+// CRUD - COLLBORATOR
 
 // POST method for Create Collaborator
 collabRoutes.post("/api/Collab", async (req, res) => {

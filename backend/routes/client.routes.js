@@ -4,7 +4,7 @@ const {PrismaClient} = require("@prisma/client")
 const clientsRoutes = express.Router()
 const prisma = new PrismaClient()
 
-// CRUD - CREATE / READ / UPDATE / DELETE
+// CRUD - CLIENT
 
 // POST method for Create Client
 clientsRoutes.post("/api/Client", async (req, res) => {

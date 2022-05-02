@@ -31,7 +31,7 @@ model Collaborator {
 // ServiceOrder Model
 model ServiceOrder {
   id                 Int          @id @unique @default(autoincrement())
-  oppeningDate       DateTime     @default(now())
+  oppeningDate       DateTime     @default(now()) @db.Timestamptz(2)
   Client             Client       @relation(fields: [ClientId], references: [id])
   ClientId           Int
   problemDescription String

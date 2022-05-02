@@ -19,7 +19,7 @@ CREATE TABLE "Collaborator" (
 -- CreateTable
 CREATE TABLE "ServiceOrder" (
     "id" SERIAL NOT NULL,
-    "oppeningDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "oppeningDate" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "ClientId" INTEGER NOT NULL,
     "problemDescription" TEXT NOT NULL,
     "CollaboratorId" INTEGER NOT NULL,
