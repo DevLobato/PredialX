@@ -9,6 +9,9 @@ cd PredialX
 cd backend
 npm install
 docker-compose up -d
+npx prisma migrate dev Client
+npx prisma migrate Collaborator
+npx prisma migrate ServiceOrder
 npm run dev
 ```
 
