@@ -30,7 +30,7 @@ npm start
 * Complete CRUD - ServiceOrder
 * Login Page
 
-# Technologies used
+# Technologies used:
 * Nodejs & Express
 * Docker & Docker-compose
 * Insomnia 
