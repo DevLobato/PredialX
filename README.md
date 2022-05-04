@@ -5,7 +5,8 @@
 _Backend_
 ```zsh
 git clone https://github.com/DevLobato/PredialX.git
-cd backend/
+cd PredialX
+cd backend
 npm install
 docker-compose up -d
 npm run dev
@@ -14,7 +15,7 @@ npm run dev
 _Frontend_
 ```zsh
 cd ..
-cd frontend/
+cd frontend
 npm install
 npm start
 ```
