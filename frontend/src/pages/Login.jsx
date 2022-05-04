@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -59,10 +59,6 @@ const Login = () => {
       });
   }, []);
 
-  function redirectToServiceOrders() {
-    return <Navigate to="/serviceOrders" />;
-  }
-
   return (
     <Container>
       <Wrapper>
@@ -70,7 +66,6 @@ const Login = () => {
         <Form>
           <Input placeholder="username" />
           <Input placeholder="password" type="password" />
-          {/* <Button onClick={redirectToServiceOrders()}>Login</Button> */}
           <Link to="/serviceOrders" className="btn btn-primary">
             Login
           </Link>
