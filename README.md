@@ -21,6 +21,10 @@ npm install
 npm start
 ```
 
+_Insomnia_
+import to Insomnia: Insomnia_Dev_Teste
+all CRUDs there
+
 # After all, we have:
 * Docker container with [PostgreSQL](https://www.postgresql.org/) running at port 5432;
 * Frontend with [React](https://pt-br.reactjs.org/) running at port 3000;
