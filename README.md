@@ -4,7 +4,7 @@
 ## How to run:
 _Backend_
 ```zsh
-Git clone https://github.com/DevLobato/PredialX.git
+git clone https://github.com/DevLobato/PredialX.git
 cd backend/
 npm install
 docker-compose up -d
