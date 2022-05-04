@@ -10,8 +10,8 @@ cd backend
 npm install
 docker-compose up -d
 npx prisma migrate dev Client
-npx prisma migrate Collaborator
-npx prisma migrate ServiceOrder
+npx prisma migrate dev Collaborator
+npx prisma migrate dev ServiceOrder
 npm run dev
 ```
 
